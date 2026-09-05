@@ -543,7 +543,9 @@
       <span class="chip">Defender for Endpoint</span>
       <span class="chip">FortiGate / FortiClient</span>
       <span class="chip">Nessus &amp; Burp Suite</span>
-      <span class="chip">CEH v12 · CCNA</span>
+      <span class="chip" style="background:#1e3a5f;color:#7dd3fc;border:1px solid #2563eb;">🏆 Microsoft SC-200 Certified</span>
+      <span class="chip" style="background:#1e3a1f;color:#86efac;border:1px solid #16a34a;">🏆 CEH v12 Certified</span>
+      <span class="chip">CCNA</span>
     </div>
   </div>
 </section>
@@ -581,6 +583,16 @@
   <div class="skill-item">
     <span class="skill-name">ThreatLocker</span>
     <span class="skill-level">Application Control</span>
+  </div>
+
+  <div class="skill-item" style="border:1px solid #2563eb;background:rgba(37,99,235,0.08);">
+    <span class="skill-name" style="color:#60a5fa;">Microsoft SC-200</span>
+    <span class="skill-level">Certified 2026</span>
+  </div>
+
+  <div class="skill-item" style="border:1px solid #16a34a;background:rgba(22,163,74,0.08);">
+    <span class="skill-name" style="color:#4ade80;">CEH v12</span>
+    <span class="skill-level">Certified 2025</span>
   </div>
 
 </div>
@@ -964,6 +976,148 @@
     </div>
   </div>
   <!-- END CASE STUDY 3 -->
+
+  <!-- ============================================
+       CASE STUDY 4 — Kali Linux / vsftpd Lab
+       ============================================ -->
+  <div class="case-card">
+    <div class="case-top">
+      <div class="case-tags">
+        <span class="ctag ctag-blue">Penetration Testing</span>
+        <span class="ctag ctag-green">Kali Linux · Metasploit</span>
+        <span class="ctag ctag-amber">Vulnerability Assessment</span>
+      </div>
+      <div class="case-title">Validating a known RCE vulnerability end-to-end — vsftpd 2.3.4 backdoor</div>
+      <div class="case-desc">A controlled lab exercise using Kali Linux and Metasploitable 2 in VirtualBox, demonstrating the full vulnerability assessment lifecycle: network discovery, service enumeration, exploitation validation, impact assessment, and remediation — the same methodology applied in real-world security operations.</div>
+      <div style="margin-top:0.75rem;padding:0.5rem 0.75rem;background:rgba(79,142,247,0.08);border-left:3px solid #4F8EF7;border-radius:4px;font-size:12px;color:var(--text-light);">
+        ⚠️ Performed entirely within an isolated VirtualBox lab environment (Kali Linux → Metasploitable 2). No real systems were involved.
+      </div>
+    </div>
+
+    <div class="case-metrics">
+      <div class="cm">
+        <div class="cm-val">Port 21</div>
+        <div class="cm-lbl">Attack surface</div>
+      </div>
+      <div class="cm">
+        <div class="cm-val">vsftpd 2.3.4</div>
+        <div class="cm-lbl">Vulnerable service</div>
+      </div>
+      <div class="cm">
+        <div class="cm-val">Root</div>
+        <div class="cm-lbl">Access gained</div>
+      </div>
+      <div class="cm">
+        <div class="cm-val">RCE</div>
+        <div class="cm-lbl">Vulnerability class</div>
+      </div>
+    </div>
+
+    <div class="case-body">
+
+      <p style="font-size:12px;font-weight:500;color:var(--text-light);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.75rem;">What the scan revealed</p>
+
+      <div class="pattern-box">
+        <div class="pattern-head amber">Nmap discovery — vsftpd 2.3.4 exposed on port 21</div>
+        <div class="pattern-body-text">Service version scan identified vsftpd 2.3.4 running on the target — a version known to contain a deliberate backdoor introduced via a compromised source package in 2011, allowing unauthenticated remote command execution.</div>
+      </div>
+
+      <div class="pattern-box">
+        <div class="pattern-head red">Exploitation confirmed — root shell obtained via backdoor trigger</div>
+        <div class="pattern-body-text">The Metasploit module for vsftpd 2.3.4 triggered the backdoor by sending a specific username pattern, opening a shell on port 6200 with root privileges — full system compromise with no credentials required.</div>
+      </div>
+
+      <p style="font-size:12px;font-weight:500;color:var(--text-light);text-transform:uppercase;letter-spacing:0.07em;margin:1.5rem 0 0.75rem;">Assessment timeline</p>
+
+      <ul class="tl">
+        <li class="tl-row">
+          <div class="tl-l"><div class="tl-dot" style="background:#DC2626;"></div><div class="tl-ln"></div></div>
+          <div>
+            <div class="tl-step">Discover</div>
+            <div class="tl-title">Nmap host and port scan identifies live target and open services</div>
+            <div class="tl-desc">A full port scan revealed multiple open services including FTP (21), SSH (22), Telnet (23), HTTP (80), and others — a wide attack surface typical of intentionally vulnerable lab targets.</div>
+          </div>
+        </li>
+        <li class="tl-row">
+          <div class="tl-l"><div class="tl-dot" style="background:#D97706;"></div><div class="tl-ln"></div></div>
+          <div>
+            <div class="tl-step">Enumerate</div>
+            <div class="tl-title">Service version scan flags vsftpd 2.3.4 on port 21</div>
+            <div class="tl-desc">Running <code style="background:rgba(255,255,255,0.08);padding:1px 4px;border-radius:3px;font-size:11px;">nmap -sV</code> returned the exact service version, which was immediately cross-referenced against known CVEs — vsftpd 2.3.4 has a well-documented backdoor (CVE-2011-2523).</div>
+          </div>
+        </li>
+        <li class="tl-row">
+          <div class="tl-l"><div class="tl-dot" style="background:#D97706;"></div><div class="tl-ln"></div></div>
+          <div>
+            <div class="tl-step">Identify</div>
+            <div class="tl-title">CVE-2011-2523 confirmed — backdoor inserted via compromised source</div>
+            <div class="tl-desc">The vulnerability stems from a malicious modification to the vsftpd 2.3.4 source code: a backdoor that listens on port 6200 when a username ending in a specific character sequence is sent during the FTP handshake.</div>
+          </div>
+        </li>
+        <li class="tl-row">
+          <div class="tl-l"><div class="tl-dot" style="background:#DC2626;"></div><div class="tl-ln"></div></div>
+          <div>
+            <div class="tl-step">Validate</div>
+            <div class="tl-title">Metasploit exploit confirms root-level RCE</div>
+            <div class="tl-desc">Used the <code style="background:rgba(255,255,255,0.08);padding:1px 4px;border-radius:3px;font-size:11px;">exploit/unix/ftp/vsftpd_234_backdoor</code> Metasploit module to trigger the backdoor and obtain an interactive root shell — confirming the vulnerability is fully exploitable with no authentication.</div>
+          </div>
+        </li>
+        <li class="tl-row">
+          <div class="tl-l"><div class="tl-dot" style="background:#0D9E6E;"></div><div class="tl-ln"></div></div>
+          <div>
+            <div class="tl-step">Assess impact</div>
+            <div class="tl-title">Root access = complete system compromise</div>
+            <div class="tl-desc">With root privileges, an attacker could read/modify any file, create persistent backdoors, pivot to other network hosts, exfiltrate data, or wipe the system — total loss of confidentiality, integrity, and availability.</div>
+          </div>
+        </li>
+        <li class="tl-row">
+          <div class="tl-l"><div class="tl-dot" style="background:#4F8EF7;"></div></div>
+          <div>
+            <div class="tl-step">Remediate</div>
+            <div class="tl-title">Patch, isolate, monitor — defensive translation of the finding</div>
+            <div class="tl-desc">Translated the technical finding into defensive actions applicable to real environments: upgrade or replace the service, remove legacy FTP exposure, maintain accurate asset inventories, and continuously monitor for exposed attack surfaces.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="code-block">
+        # Network discovery<br>
+        nmap -sV -p- &lt;target-ip&gt;<br><br>
+        # Metasploit exploitation<br>
+        use exploit/unix/ftp/vsftpd_234_backdoor<br>
+        set RHOSTS &lt;target-ip&gt;<br>
+        run<br><br>
+        # Result: root shell on port 6200
+      </div>
+
+      <div class="two-col">
+        <div class="mini-card">
+          <div class="mini-card-title">Why version scanning matters</div>
+          <div class="mini-card-body">Service version enumeration is what turns "port 21 is open" into "this specific version has a known backdoor." Asset inventories without version tracking miss this entirely — which is why version-aware scanning is a non-negotiable part of vulnerability management.</div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title">Offensive understanding → defensive value</div>
+          <div class="mini-card-body">Validating exploitability changes how findings get prioritized. A scanner flagging vsftpd 2.3.4 is a data point — understanding that it yields unauthenticated root in seconds is what makes it a P1 remediation, not a scheduled patch.</div>
+        </div>
+      </div>
+
+      <p style="font-size:12px;font-weight:500;color:var(--text-light);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.5rem;">Key learnings</p>
+      <div class="learn-row">
+        <div class="learn-icon green">✓</div>
+        <div class="learn-text">The full assessment lifecycle — Discover → Enumerate → Identify → Validate → Assess Impact → Remediate — applies equally to lab environments and production security operations.</div>
+      </div>
+      <div class="learn-row">
+        <div class="learn-icon green">✓</div>
+        <div class="learn-text">Legacy services left running are not just a compliance gap — they are exploitable paths to root. Service exposure should be audited continuously, not just at deployment.</div>
+      </div>
+      <div class="learn-row">
+        <div class="learn-icon grey">→</div>
+        <div class="learn-text">Understanding attacks from the offensive side makes defensive recommendations sharper — patch urgency, network segmentation, and monitoring rules all become more precisely scoped.</div>
+      </div>
+
+    </div>
+  </div>
+  <!-- END CASE STUDY 4 -->
 
   <div class="divider"></div>
 
